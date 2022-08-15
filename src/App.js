@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import Profile from "./Profile";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+  state = {
+    fullName: "Rihem Ben Ahmed",
+    bio: "bac sciences exp, licence en administration des réseaux et services, Ingenieurie en dévelepement des infrastructures de communications",
+    imgSrc: "femme.png",
+    profession: "Etudiante",
+    show: false,
+  };
+  handleShow = () => {
+    this.state.show
+      ? this.setState({ show: false })
+      : this.setState({ show: true });
+    console.log(this.state.show);
+  };
+
+  render() {
+    return (
+      <div>
+        <h1>The component has been rendered for {this.state.count} seconds</h1>
+        <button onClick={this.handleShow}>Show Profile</button>
+        {this.state.show ? (
+          <Profile
+            fullName={this.state.fullName}
+            bio={this.state.bio}
+            profession={this.state.profession}
+          >
+            <img src={this.state.imgSrc} alt="profile" />
+          </Profile>
+        ) : (
+          "Loading..."
+        )}
+      </div>
+    );
+  }
 }
-
-export default App;
