@@ -8,6 +8,7 @@ export default class App extends Component {
     imgSrc: "femme.png",
     profession: "Etudiante",
     show: false,
+    count:0
   };
   handleShow = () => {
     this.state.show
@@ -15,6 +16,15 @@ export default class App extends Component {
       : this.setState({ show: true });
     console.log(this.state.show);
   };
+  componentDidMount() {
+    const intervalId = setInterval(() => {
+      this.setState(prevState => {
+        return {
+          count: prevState.count + 1,
+        };
+      });
+    }, 1000);
+  }
 
   render() {
     return (
